@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\BirthdayRoomsBackend.props" />
-</Project>
