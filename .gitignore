@@ -1,0 +1,25 @@
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+.vscode/
+*.code-workspace
+
+# Mac
+.DS_Store
+
+# Logs
+*.log
+
+# Docker
+*.env
+.env.*
+docker-compose.override.yml
+
+# Otros
+node_modules/
