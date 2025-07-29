@@ -162,10 +162,74 @@ dotnet run --project BirthdayRoomsBackend
 
 ## Docker
 
+## ¿Desde qué carpeta ejecutar los comandos?
+
+Todos los comandos deben ejecutarse **desde la raíz del proyecto**, es decir, donde se encuentran estos archivos:
+
+```
+/BirthdayRoomsBackend/
+├── Dockerfile
+├── docker-compose.yml
+├── BirthdayRoomsBackend.csproj
+└── ...
+```
+
+📌 Si no estás en esa carpeta, navegá primero con:
+
+```bash
+cd ruta/donde/esta/BirthdayRoomsBackend
+```
+
+---
+
+## Opción 1: Usando Docker directamente
+
+### Paso 1: Construir la imagen
+
 ```bash
 docker build -t birthdayrooms-api .
-docker run -p 5000:80 birthdayrooms-api
 ```
+
+### Paso 2: Ejecutar el contenedor
+
+```bash
+docker run -d -p 8080:8080 --name birthdayrooms-api birthdayrooms-api
+```
+
+### Acceder a la API
+
+Una vez levantado el contenedor, podés acceder a Swagger desde:
+
+```
+http://localhost:8080/swagger
+```
+
+---
+
+## Opción 2: Usando Docker Compose
+
+### Paso único
+
+```bash
+docker-compose up --build
+```
+
+Esto construirá la imagen y levantará el contenedor automáticamente.
+
+### Swagger
+
+```
+http://localhost:8080/swagger
+```
+
+---
+
+## Detalles técnicos
+
+- **Puerto expuesto:** `8080`
+- **Variable de entorno:** `ASPNETCORE_URLS=http://+:8080`
+- **Imagen base:** `mcr.microsoft.com/dotnet/aspnet:8.0`
+- **Entorno:** `Development`
 
 ---
 
