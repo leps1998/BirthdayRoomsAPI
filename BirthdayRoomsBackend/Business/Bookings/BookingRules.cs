@@ -24,10 +24,13 @@ namespace BirthdayRoomsBackend.Business.Bookings
 
         public static bool OverlapsWithBuffer(BookingRequestDTO request, Booking existing)
         {
-            var rangeStart = existing.StartTime - BufferTime;
-            var rangeEnd = existing.EndTime + BufferTime;
+            var requestedStart = request.Date.Add(request.StartTime);
+            var requestedEnd = request.Date.Add(request.EndTime);
 
-            return request.StartTime < rangeEnd && request.EndTime > rangeStart;
+            var existingStart = existing.Date.Add(existing.StartTime).AddMinutes(-BufferTime.TotalMinutes);
+            var existingEnd = existing.Date.Add(existing.EndTime).AddMinutes(BufferTime.TotalMinutes);
+
+            return requestedStart < existingEnd && requestedEnd > existingStart;
         }
 
     }
